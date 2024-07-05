@@ -1,8 +1,11 @@
 import requests
 import smtplib
+import os
+import config
 
-MY_EMAIL = "y1011996@gmail.com"
-PASSWORD = "mrnyhpmwbekkwtpu"
+gmail_user = config.MY_EMAIL
+gmail_pass= config.PASSWORD
+
 
 STOCK_NAME = "TSLA"
 COMPANY_NAME = "Tesla Inc"
@@ -10,8 +13,14 @@ COMPANY_NAME = "Tesla Inc"
 STOCK_ENDPOINT = "https://www.alphavantage.co/query"
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 
-STOCK_API_KEY = "XPVMJQG949OF4ZSQ"
-NEWS_API_KEY = "2a488ac1caf8409187780791a0453953"
+STOCK_API_KEY = os.environ.get("OPEN_STOCK_API_KEY")
+NEWS_API_KEY = os.environ.get("OPEN_NEWS_API_KEY")
+
+stock_key = os.environ.get("OPEN_STOCK_API_KEY")
+if stock_key is None:
+    print("API key is not found")
+else:
+    print(f"API key found")
 
 stock_params = {
     "function": "TIME_SERIES_DAILY",
@@ -68,9 +77,9 @@ formatted_articles = [f"Headline: {article['title']}. \n Brief: {article['descri
 for article in formatted_articles:
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
-        connection.login(MY_EMAIL, PASSWORD)
+        connection.login(gmail_user, gmail_pass)
         connection.sendmail(
-            from_addr=MY_EMAIL,
+            from_addr=gmail_user,
             to_addrs="lenhuy10011996@gmail.com",
             msg=f"Subject: Stock news.\n\n This is the message:{article}"
         )

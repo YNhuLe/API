@@ -14,6 +14,7 @@ article_links = []
 for article_tag in articles:
     text= article_tag.getText()
     article_texts.append(text)
+
     link = article_tag.get("href")
     article_links.append(link)
 
