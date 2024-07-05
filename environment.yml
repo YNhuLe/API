@@ -1,0 +1,4 @@
+name: stock_env
+channels:
+  - defaults
+prefix: C:\Users\lenhu\anaconda3\envs\stock_env
