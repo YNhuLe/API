@@ -33,4 +33,4 @@ Make sure you set the following environment variables:
 ## Run the Script ▶️
 Run the script to check Tesla's stock prices, fetch the latest news, and receive email alerts:
 
-`python your_script_name.py`
+`python script.py`
