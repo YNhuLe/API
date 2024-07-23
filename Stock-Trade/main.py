@@ -1,11 +1,10 @@
 import requests
 import smtplib
 import os
-import config
+# import config
 
-gmail_user = config.MY_EMAIL
-gmail_pass= config.PASSWORD
-
+gmail_user = os.getenv('MY_EMAIL')
+gmail_pass = os.getenv('PASSWORD')
 
 STOCK_NAME = "TSLA"
 COMPANY_NAME = "Tesla Inc"
